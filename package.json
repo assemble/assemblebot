@@ -1,0 +1,28 @@
+{
+  "name": "assemblebot",
+  "description": "Bot to listen to and respond to issues open on assemble repositories.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/assemble/assemblebot",
+  "author": "Brian Woodward (https://github.com/doowb)",
+  "repository": "assemble/assemblebot",
+  "bugs": {
+    "url": "https://github.com/assemble/assemblebot/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "keywords": []
+}
