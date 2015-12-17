@@ -11,59 +11,53 @@
  * webtask.io task to handle github webhooks
  */
 
+var async = require('async');
+var post = require('./lib/post-comment');
+var error = require('./lib/error');
+var config = require('./lib/config');
+var render = require('./lib/render');
+var success = require('./lib/success');
+var template = require('./lib/template');
+
 module.exports = function (context, req, res) {
   var payload = context.data;
   if (payload.action !== 'opened') {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({
+    return success(res, {
       code: 200,
       status: 'success',
       action: payload.action,
       message: 'No action taken'
-    }));
-    return;
+    });
   }
 
   if (!payload.GITHUB_TOKEN) {
-    return handleError(res, 500, 'Invalid GITHUB_TOKEN');
+    return error(res, 'Invalid GITHUB_TOKEN');
   }
 
-  var fs = require('fs');
-  var Github = require('github-base');
-  var github = new Github({
-    token: payload.GITHUB_TOKEN
-  });
+  var token = payload.GITHUB_TOKEN;
   delete payload.GITHUB_TOKEN;
 
-  var Engine = require('engine');
-  var engine = new Engine();
-  var tmpl = fs.readFileSync(__dirname + '/templates/response.tmpl', 'utf8');
+  // options to use when pulling down files from this repo.
+  var repoOpts = {
+    token: token,
+    owner: 'assemble',
+    repo: 'assemblebot'
+  };
 
-  var opts = {
-    body: engine.render(tmpl, payload),
+  // options used to post comments
+  var commentOpts = {
     owner: payload.repository.owner.login,
     repo: payload.repository.name,
     number: payload.issue.number
   };
 
-  github.post('/repos/:owner/:repo/issues/:number/comments', opts, function(err, data, response) {
-    if (err) {
-      return handleError(res, 500, err);
-    }
-    if (response.statusCode < 200 || response.statusCode >= 300) {
-      return handleError(res, +response.statusCode, response.statusMessage);
-    }
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({
-      status: 'success',
-      code: response.statusCode,
-      message: response.statusMessage
-    }));
+  async.waterfall([
+    config(payload, repoOpts),
+    template(repoOpts),
+    render(payload),
+    post(token, commentOpts),
+  ], function(err, results) {
+    if (err) return error(res, err);
+    success(res, results);
   });
-
 };
-
-function handleError(res, status, err) {
-  res.writeHead(status, {'Content-Type': 'application/json'});
-  res.end(JSON.stringify({error: (typeof err === 'string') ? err : err.message}));
-}

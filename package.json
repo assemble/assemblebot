@@ -10,20 +10,23 @@
   },
   "license": "MIT",
   "files": [
-    "index.js"
+    "index.js",
+    "dist/",
+    "lib/"
   ],
   "main": "index.js",
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
-    "build": "browserify index.js -t brfs -g uglifyify --exclude request --node --standalone assemblebot -o ./dist/main.js",
+    "build": "browserify index.js -t brfs -g uglifyify --exclude request --exclude async --node --standalone assemblebot -o ./dist/main.js",
     "test": "mocha"
   },
   "dependencies": {
     "async": "^1.5.0",
     "engine": "^0.1.10",
-    "github-base": "^0.4.0"
+    "github-base": "^0.4.0",
+    "github-content": "^0.1.0"
   },
   "devDependencies": {
     "brfs": "^1.4.1",
