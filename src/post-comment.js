@@ -19,8 +19,8 @@ module.exports = function(token, opts) {
         return cb(err);
       }
       if (res.statusCode < 200 || res.statusCode >= 300) {
+        err = new Error(res.statusMessage);
         err.code = +res.statusCode;
-        err.message = res.statusMessage;
         return cb(err);
       }
 
