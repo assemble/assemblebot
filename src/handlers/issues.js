@@ -16,6 +16,25 @@ var render = require('../render');
 var success = require('../success');
 var template = require('../template');
 
+/**
+ * Handles responding to newely open github issues.
+ *
+ * Will post a comment on a newely open github issue as the configured github user.
+ * Uses a template that can be rendered with the issue payload providing more context and a richer response.
+ *
+ * See the github webhook [issues event](https://developer.github.com/v3/activity/events/types/#issuesevent) for specification of payload object.
+ *
+ * ```js
+ * bot.handleIssues(payload, function(err, results) {
+ *   if (err) return console.error(err);
+ *   console.log(results);
+ * });
+ * ```
+ *
+ * @api public
+ * @name issues
+ */
+
 module.exports = function(bot, options) {
   options = options || {};
 
