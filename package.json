@@ -11,8 +11,8 @@
   "license": "MIT",
   "files": [
     "index.js",
-    "dist/",
-    "lib/"
+    "templates/",
+    "src/"
   ],
   "main": "index.js",
   "engines": {
