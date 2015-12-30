@@ -7,57 +7,38 @@
 
 'use strict';
 
+var GithubBot = require('githubbot');
+var handlers = require('./src/handlers');
+
 /**
- * webtask.io task to handle github webhooks
+ * Main class for creating a new AssembleBot instance. This bot extends [GithubBot][githubbot] and adds
+ * sepcific handlers for responding to [assemble][assemble] issues.
+ *
+ * ```js
+ * var bot = new AssembleBot({GITHUB_TOKEN: 'XXX'});
+ * ```
+ *
+ * @param {Object} `options` Options to use to configure the bot.
+ * @param {String} `options.GITHUB_TOKEN` Personal github token the bot uses to post to github issues.
+ * @api  public
  */
 
-var async = require('async');
-var post = require('./lib/post-comment');
-var error = require('./lib/error');
-var config = require('./lib/config');
-var render = require('./lib/render');
-var success = require('./lib/success');
-var template = require('./lib/template');
-
-module.exports = function (context, req, res) {
-  var payload = context.data;
-  if (payload.action !== 'opened') {
-    return success(res, {
-      code: 200,
-      status: 'success',
-      action: payload.action,
-      message: 'No action taken'
-    });
+function AssembleBot(options) {
+  if (!(this instanceof AssembleBot)) {
+    return new AssembleBot(options);
   }
+  GithubBot.call(this, options);
+  this.use(handlers(this.options));
+}
 
-  if (!payload.GITHUB_TOKEN) {
-    return error(res, 'Invalid GITHUB_TOKEN');
-  }
+/**
+ * Extend `GithubBot`
+ */
 
-  var token = payload.GITHUB_TOKEN;
-  delete payload.GITHUB_TOKEN;
+GithubBot.extend(AssembleBot);
 
-  // options to use when pulling down files from this repo.
-  var repoOpts = {
-    token: token,
-    owner: 'assemble',
-    repo: 'assemblebot'
-  };
+/**
+ * Exposes `AssembleBot`
+ */
 
-  // options used to post comments
-  var commentOpts = {
-    owner: payload.repository.owner.login,
-    repo: payload.repository.name,
-    number: payload.issue.number
-  };
-
-  async.waterfall([
-    config(payload, repoOpts),
-    template(repoOpts),
-    render(payload),
-    post(token, commentOpts),
-  ], function(err, results) {
-    if (err) return error(res, err);
-    success(res, results);
-  });
-};
+module.exports = AssembleBot;

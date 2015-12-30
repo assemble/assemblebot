@@ -7,7 +7,9 @@
 
 'use strict';
 
-module.exports = function error(res, data) {
-  res.writeHead(200, {'Content-Type': 'application/json'});
-  res.end(JSON.stringify(data));
+module.exports = function error(cb, err) {
+  if (typeof err === 'string') {
+    err = new Error(err);
+  }
+  cb(err);
 };
