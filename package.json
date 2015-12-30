@@ -27,14 +27,10 @@
     "export-files": "^2.1.0",
     "github-base": "^0.4.0",
     "github-content": "^0.1.0",
-    "githubbot": "^0.1.2",
-    "githubbot-connect": "^0.1.0"
+    "githubbot": "^0.1.2"
   },
   "devDependencies": {
-    "body-parser": "^1.14.2",
-    "express": "^4.13.3",
-    "mocha": "^2.3.4",
-    "supertest": "^1.1.0"
+    "mocha": "^2.3.4"
   },
   "keywords": [],
   "verb": {

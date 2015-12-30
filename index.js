@@ -8,7 +8,6 @@
 'use strict';
 
 var GithubBot = require('githubbot');
-var middleware = require('githubbot-connect');
 var handlers = require('./src/handlers');
 
 function AssembleBot(options) {
@@ -16,7 +15,6 @@ function AssembleBot(options) {
     return new AssembleBot(options);
   }
   GithubBot.call(this, options);
-  this.use(middleware());
   this.use(handlers(this.options));
 }
 
