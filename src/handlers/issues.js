@@ -81,12 +81,6 @@ module.exports = function(bot, options) {
         data: data
       },
       {
-        name: 'gulp-assemble',
-        repo: 'assemble/gulp-assemble',
-        description: 'Issues with using assemble in gulp or the gulp-assemble library.',
-        data: data
-      },
-      {
         name: 'handlebars-helpers',
         repo: 'assemble/handlebars-helpers',
         description: 'Issues with using handlebars helpers from the handlebars-helpers library.',
