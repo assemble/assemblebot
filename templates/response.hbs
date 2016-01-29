@@ -1,0 +1,14 @@
+
+@{{issue.user.login}} Thanks for the issue! If you're reporting a bug, please be sure to include:
+
+- The version of `assemble` you are using.
+- Your assemblefile.js (This can be in a gist)
+- The commandline output. (Screenshot or gist is fine)
+- What you expected to happen instead.
+
+{{#is repository.name "assemble"}}
+If your issue is related to one of the following, please open an issue there:
+{{#each ../others}}
+  - [{{name}}]({{issue repo data}}) {{description}}
+{{/each}}
+{{/is}}

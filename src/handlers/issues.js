@@ -14,7 +14,6 @@ var error = require('../error');
 var config = require('../config');
 var render = require('../render');
 var success = require('../success');
-var template = require('../template');
 
 /**
  * Handles responding to newely open github issues.
@@ -68,9 +67,35 @@ module.exports = function(bot, options) {
       number: payload.issue.number
     };
 
+    var data = {
+      title: payload.issue.title,
+      body: payload.issue.body
+    };
+
+    // sets up common libraries that people ask questions about on the main `assemble` repo.
+    payload.others = [
+      {
+        name: 'grunt-assemble',
+        repo: 'assemble/grunt-assemble',
+        description: 'Issues with using assemble in grunt or the grunt-assemble library.',
+        data: data
+      },
+      {
+        name: 'gulp-assemble',
+        repo: 'assemble/gulp-assemble',
+        description: 'Issues with using assemble in gulp or the gulp-assemble library.',
+        data: data
+      },
+      {
+        name: 'handlebars-helpers',
+        repo: 'assemble/handlebars-helpers',
+        description: 'Issues with using handlebars helpers from the handlebars-helpers library.',
+        data: data
+      }
+    ];
+
     async.waterfall([
       config(payload, repoOpts),
-      template(repoOpts),
       render(payload),
       post(token, commentOpts),
     ], function(err, results) {

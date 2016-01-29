@@ -7,7 +7,7 @@
 
 'use strict';
 
-var GithubContent = require('github-content');
+// var GithubContent = require('github-content');
 
 /**
  * Pull down the config from github.
@@ -15,7 +15,7 @@ var GithubContent = require('github-content');
 
 module.exports = function config(payload, opts) {
   return function(cb) {
-    cb(null, 'response.tmpl');
+    cb(null, 'response');
 
     // var client = new GithubContent(opts);
     // client.file('templates/' + filename, function(err, file) {
