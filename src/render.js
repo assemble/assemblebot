@@ -8,8 +8,9 @@
 'use strict';
 
 var path = require('path');
-var assemble = require('assemble');
+var assemble = require('assemble-core');
 var app = assemble();
+app.use(require('assemble-loader')());
 app.engine('hbs', require('engine-handlebars'));
 app.helpers(require('handlebars-helpers')());
 app.helper('issue', require('helper-issue'));
