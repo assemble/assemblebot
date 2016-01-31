@@ -11,8 +11,8 @@
   "license": "MIT",
   "files": [
     "index.js",
-    "templates/",
-    "src/"
+    "lib/",
+    "templates/"
   ],
   "main": "index.js",
   "engines": {
@@ -26,13 +26,17 @@
     "assemble-loader": "^0.3.0",
     "async": "^1.5.2",
     "engine-handlebars": "^0.8.0",
-    "export-files": "^2.1.1",
+    "export-dirs": "^0.2.4",
     "github-base": "^0.4.0",
     "githubbot": "^0.1.2",
     "handlebars-helpers": "github:assemble/handlebars-helpers#dev",
-    "helper-issue": "^0.3.0"
+    "helper-issue": "^0.3.0",
+    "lazy-cache": "^1.0.3"
   },
   "devDependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4",
+    "githubbot-connect": "^0.1.0",
     "mocha": "^2.3.4"
   },
   "keywords": [],
