@@ -23,7 +23,8 @@ if (!config.GITHUB_TOKEN) {
 
 var payloads = {
   created: require('./fixtures/payload-created.json'),
-  opened: require('./fixtures/payload-opened.json')
+  opened: require('./fixtures/payload-opened.json'),
+  long: require('./fixtures/payload-opened-long.json')
 };
 
 /* deps: mocha */
@@ -36,6 +37,18 @@ describe('assemblebot', function() {
 
   it('should handle an opened issues payload', function(done) {
     bot.handleIssues(payloads.opened, function(err, results) {
+      if (err) return done(err);
+      assert.deepEqual(results, {
+        status: 'success',
+        code: 201,
+        message: 'Created'
+      });
+      done();
+    });
+  });
+
+  it('should handle an opened issues payload with a long body', function(done) {
+    bot.handleIssues(payloads.long, function(err, results) {
       if (err) return done(err);
       assert.deepEqual(results, {
         status: 'success',
