@@ -1,7 +1,7 @@
 {
   "name": "assemblebot",
   "description": "Bot for responding to github issues opened on assemble repositories.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "https://github.com/assemble/assemblebot",
   "author": "Brian Woodward (https://github.com/doowb)",
   "repository": "assemble/assemblebot",
