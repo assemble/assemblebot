@@ -9,6 +9,7 @@ matrix:
   fast_finish: true
   allow_failures:
   - node_js: '0.10'
+  - node_js: '0.12'
 env:
   global:
     secure: dDg6K9sizJ1yTYHwAI7I7j1JZpJi04Ep5NNCZ5aDARGT51P5VKHC2HGSusBbg5H8jw7DTSzYf4vJj6i7ybVRjesKKydm5shR6Us8BzoY9GQdYb9bzgxv3OLIthGytDW1CJ7HmwfH03/gnjZ048zrlJG2cXPtfqaLaTvOiFX1WLXPnO9frxVkBUrEuwICuzUaf+dDtU6O/v6VWvtr2xC8XidDJ/bbNkkvJyIg9L5mFvKlrCDQ27Pi02kPuq1dgryHka/gT6j2NeUoP80K92pNnpvOfgzmfeQNmP6+L2UVIckyYbDOvlarTVDw6JWv5qb6goVXgM3Jd1tON7M8gQj9rLh8I5iWveCPDpa7ILlhiHP2fzYhJQ4G8hBzGcaxqkS2RZjqmpxmwrRsDhkuhafEmteUO9GVS2BYNihvaBdjp9y570kalKb9DHT5dKCtCpg3JGmdSz/z1hn3Vyg5iwtLQrLZ5nzZGucECt3KgPOsHTKh+U/gKa0lvvunD8p/DqYnCyQwNg5grEOkMEkHp5rVLhyVwuEFBlLq8OTiomRdHyEQ9gtQlVa3QeYHxDKw22Vs4BGEmbpgdL4Gt8TecxK82Zwr09vtHbVsVgVSZiJ+HEEQVch+2rFF3JHwnyb+B/fXu+VzBZS40ouXOFsz7f/+y+NsPXTDzKUEsmS+KOIKaN8=
