@@ -22,12 +22,12 @@
     "test": "mocha"
   },
   "dependencies": {
-    "assemble-core": "^0.11.0",
+    "assemble-core": "^0.14.3",
     "assemble-loader": "^0.3.0",
     "async": "^1.5.2",
     "engine-handlebars": "^0.8.0",
     "export-dirs": "^0.2.4",
-    "github-base": "^0.4.0",
+    "github-base": "^0.4.1",
     "githubbot": "^0.1.2",
     "handlebars-helpers": "github:assemble/handlebars-helpers#dev",
     "helper-issue": "^0.3.0",
