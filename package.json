@@ -37,16 +37,32 @@
     "body-parser": "^1.14.2",
     "express": "^4.13.4",
     "githubbot-connect": "^0.1.0",
+    "gulp-format-md": "^0.1.7",
     "mocha": "^2.3.4"
   },
   "keywords": [],
   "verb": {
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
     "related": {
       "list": [
         "assemble",
         "githubbot",
         "base-bot"
       ]
+    },
+    "reflinks": [
+      "assemble-core",
+      "verb"
+    ],
+    "lint": {
+      "reflinks": true
     }
   }
 }
